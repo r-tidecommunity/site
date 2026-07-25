@@ -17,3 +17,5 @@ site/
 
 # Editor files
 .quarto/
+/.quarto/
+**/*.quarto_ipynb
