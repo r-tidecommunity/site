@@ -19,7 +19,6 @@ format:
       - brand
     css: styles.css
     toc: true
-    feed: true
 
 editor: visual
 
