@@ -1,0 +1,19 @@
+# Quarto
+_site/
+site/
+*.html
+*.pdf
+*.docx
+*.pptx
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
+
+# Editor files
+.quarto/

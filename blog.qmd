@@ -1,0 +1,75 @@
+---
+title: "R-Tide Posts"
+page-layout: full
+listing:
+  contents: posts/*.qmd
+  sort: "date desc"
+  type: grid
+  fields: [title, date, description]
+  grid-columns: 2
+---
+
+<style>
+/* Blog listing cards */
+.listing-item {
+  background: white !important;
+  border: 1px solid #e8f4f8 !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 2px 4px rgba(26, 58, 92, 0.05) !important;
+  transition: all 0.3s ease !important;
+}
+
+.listing-item:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(26, 58, 92, 0.12) !important;
+  border-color: #2A9D8F !important;
+}
+
+.listing-item .listing-title {
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  color: #1A3A5C !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.listing-item .listing-title a {
+  color: #1A3A5C !important;
+  text-decoration: none !important;
+}
+
+.listing-item .listing-title a:hover {
+  color: #2A9D8F !important;
+  text-decoration: underline !important;
+}
+
+.listing-item .listing-description {
+  color: #5a6c7e !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.listing-item .listing-date {
+  color: #8a9aa8 !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+}
+
+.listing-grid {
+  gap: 1.5rem !important;
+}
+</style>
+
+All R-Tide posts, curated for you to explore.
+
+---
+
+```{r}
+#| echo: false
+#| warning: false
+
+posts <- list.files("posts", pattern = "\\.qmd$", full.names = TRUE)
+total_posts <- length(posts)
+
+```

@@ -1,0 +1,426 @@
+---
+title: "Understanding Packages, Functions, and the Tidyverse Workflow"
+description: "Learn about R packages, writing functions, and Hadley Wickham's tidyverse approach to data science"
+date: "2026-07-02"
+categories: [R, packages, tidyverse, functions, beginner]
+---
+
+Welcome back to R-Tide! 
+
+In our first post, we explored what R is and why it matters. Now it's time to get hands-on with the tools that make R so powerful. We'll cover three essential topics:
+
+1.  **Packages** — The community-built extensions that give R its superpowers
+2.  **Functions** — From built-in verbs to custom functions you write yourself
+3.  **The Tidyverse Workflow** — Hadley Wickham's approach to doing data science
+
+------------------------------------------------------------------------
+
+## 📦 What Are Packages?
+
+R comes with a set of built-in functions, but its real strength lies in **packages** — collections of code, documentation, and data created by the community. Think of them as free apps you can install to add new capabilities to R.
+
+### Installing and Loading Packages
+
+To use a package, you need to install it once, then load it each session:
+
+```{r}
+#| eval: false
+
+# Install the package (do this once)
+install.packages("tidyverse")
+
+# Load the package (do this every session)
+library(tidyverse)
+```
+
+### Common R Packages
+
+Here are some of the most widely used packages, organized by what they do:
+
+#### 📊 Data Manipulation
+
+| Package | What It Does |
+|----------------------------|-------------------------------------------|
+| **dplyr** | The go-to package for data manipulation — filtering, summarizing, arranging, and joining datasets |
+| **tidyr** | Tools for reshaping data into tidy formats using `pivot_longer()` and `pivot_wider()` |
+| **stringr** | Makes working with text data (strings) easy and consistent |
+| **lubridate** | Simplifies working with dates and times |
+| **data.table** | An alternative for very fast operations on large datasets |
+
+#### 📈 Data Visualization
+
+| Package | What It Does |
+|----------------------------|-------------------------------------------|
+| **ggplot2** | R's famous package for creating beautiful graphics using the "grammar of graphics" |
+| **plotly** | Creates interactive, web-based visualizations |
+| **htmlwidgets** | A framework for building JavaScript-based visualizations in R |
+
+#### 📥 Data Import
+
+| Package | What It Does |
+|----------------------------|-------------------------------------------|
+| **readr** | Fast and friendly way to read CSV, TSV, and other rectangular data |
+| **haven** | Reads data from SAS, SPSS, and Stata files |
+| **DBI** | The standard interface for connecting R to databases |
+
+#### 📝 Reporting & Communication
+
+| Package | What It Does |
+|----------------------------|-------------------------------------------|
+| **shiny** | Create interactive web apps directly from R |
+| **rmarkdown** | The perfect workflow for reproducible reporting — combine code and text in one document |
+
+#### 🔧 Modeling & Machine Learning
+
+| Package | What It Does |
+|----------------------------|-------------------------------------------|
+| **tidymodels** | A collection of packages for modeling using tidyverse principles |
+| **caret** | A framework for training classification and regression models |
+| **randomForest** | Random forest methods for machine learning |
+
+------------------------------------------------------------------------
+
+## 🔧 Understanding Functions in R
+
+A **function** is a defined set of code statements organized together to perform a specific task (R Core Team, 2026). Functions are designed to accept inputs, do something with them, and return a useful output (Wickham, 2019).
+
+### Three Types of Functions in R
+
+Functions in R come from different sources. Understanding the distinction will help you become a more confident R user:
+
+#### 1. 📦 **Package Functions** — Verbs from Libraries
+
+These are functions that come with packages you install and load. You need to load the package before you can use its functions.
+
+**Example: `dplyr` verbs**
+
+```{r}
+#| eval: false
+
+# Load the tidyverse package to access dplyr functions
+library(tidyverse)
+
+# filter() - Keep rows that meet conditions
+filtered_data <- data |>
+  filter(age > 18)
+
+# summarize() - Collapse data into summary statistics
+summary_data <- data |>
+  summarize(mean_value = mean(value, na.rm = TRUE))
+
+# mutate() - Create new variables
+data_with_new_col <- data |>
+  mutate(new_column = value * 2)
+
+# arrange() - Sort your data
+sorted_data <- data |>
+  arrange(desc(value))
+
+# select() - Choose specific columns
+selected_cols <- data |>
+  select(name, age, value)
+```
+
+**Key Point:** You must load the package with `library(package_name)` before using its functions, or use the `package::function()` syntax:
+
+```{r}
+#| eval: false
+
+# Load the package first
+library(dplyr)
+filtered_data <- filter(data, age > 18)
+
+# OR use the package name directly (no need to load)
+filtered_data <- dplyr::filter(data, age > 18)
+```
+
+#### 2. ⚙️ **Base R Functions** — Built into R
+
+These functions come with R itself. You don't need to install or load anything extra to use them. They're always available.
+
+```{r}
+#| eval: false
+
+# mean() - Calculate the average
+mean_value <- mean(c(1, 2, 3, 4, 5))
+
+# sum() - Add up values
+total <- sum(c(1, 2, 3, 4, 5))
+
+# length() - Count elements
+num_elements <- length(c(1, 2, 3, 4, 5))
+
+# summary() - Get summary statistics
+summary(mtcars$mpg)
+
+# head() - View first few rows
+head(mtcars)
+
+# str() - View structure of an object
+str(mtcars)
+
+# c() - Combine values into a vector
+my_vector <- c(1, 2, 3, 4, 5)
+
+# paste() - Combine text strings
+greeting <- paste("Hello", "World")
+
+# read.csv() - Read a CSV file
+data <- read.csv("my_file.csv")
+```
+
+#### 3. 🛠️ **Custom Functions** — Write Your Own
+
+When you find yourself repeating the same code over and over, it's time to write your own function. Custom functions let you:
+
+- **Don't Repeat Yourself (DRY)** — Write code once, use it many times
+- **Make code more readable** — Give your function a clear name
+- **Easier to update** — Change code in one place, not everywhere
+- **Build your own toolkit** — Create functions for your specific needs
+
+**The Anatomy of a Custom Function:**
+
+```{r}
+#| eval: false
+
+function_name <- function(argument1, argument2, ...) {
+  # Code that does something with the arguments
+  result <- argument1 + argument2
+  return(result)
+}
+```
+
+**Example: A simple custom function**
+
+```{r}
+#| eval: false
+
+# Define a function that calculates the mean and returns a message
+mean_with_message <- function(x) {
+  mean_value <- mean(x, na.rm = TRUE)
+  message <- paste("The mean is:", mean_value)
+  return(message)
+}
+
+# Use the function
+mean_with_message(c(1, 2, 3, 4, 5))
+```
+
+------------------------------------------------------------------------
+
+##  The Tidyverse Workflow
+
+The **tidyverse** is an opinionated collection of R packages designed for data science that share a common philosophy and grammar. It was created by **Hadley Wickham** and others to make data science in R more consistent and intuitive.
+
+### The Data Science Cycle
+
+The tidyverse is built around a clear, iterative workflow that takes you from raw data to insights. Here's the cycle:
+
+![](/images/tidy_model.jpg)
+
+### Breaking Down Each Step
+
+#### 1. 📥 **Import**
+
+Get your data into R. This might mean reading a CSV file, connecting to a database, or importing from Excel.
+
+**Functions used:** `read_csv()`, `read_excel()`, `dbConnect()`
+
+#### 2. 📐 **Tidy**
+
+Transform your data into a consistent structure known as **tidy data**, where: - Each variable is a column - Each observation is a row - Each type of observational unit is a table
+
+**Functions used:** `pivot_longer()`, `pivot_wider()`, `separate()`, `unite()`
+
+As Hadley Wickham famously said: *"Tidy datasets are all alike, but every messy dataset is messy in its own way"*.
+
+#### 3. 🔄 **Transform**
+
+Manipulate your data to make it useful for analysis. This is where `dplyr` shines with its verb functions:
+
+| Function      | What It Does                          |
+|---------------|---------------------------------------|
+| `filter()`    | Keep rows based on conditions         |
+| `select()`    | Choose specific columns               |
+| `mutate()`    | Create new variables                  |
+| `summarize()` | Collapse data into summary statistics |
+| `arrange()`   | Sort your data                        |
+| `group_by()`  | Group data for grouped operations     |
+| `rename()`    | Rename columns                        |
+
+**Example using dplyr verbs:**
+
+```{r}
+#| eval: false
+
+# Chain dplyr verbs together with the pipe
+data |>
+  filter(age > 18) |>                    # filter() - keep adults
+  select(name, age, income) |>           # select() - choose columns
+  mutate(income_thousands = income / 1000) |>  # mutate() - create new column
+  group_by(age_group) |>                 # group_by() - group data
+  summarize(mean_income = mean(income))  # summarize() - collapse data
+```
+
+#### 4. 👁️ **Visualize**
+
+Create plots to explore your data and communicate findings using `ggplot2`.
+
+**Functions used:** `ggplot()`, `geom_point()`, `geom_bar()`, `geom_histogram()`, `geom_boxplot()`
+
+#### 5. 📊 **Model**
+
+Build statistical models to capture signals in your data.
+
+**Functions used:** `lm()`, `glm()`, `train()`, `rand_forest()`
+
+#### 6. 📝 **Communicate**
+
+Share your results using tools like R Markdown or Quarto.
+
+**Functions used:** Quarto markdown, code chunks, inline R code
+
+### The Iterative Cycle
+
+A key insight from this workflow is that it's **not a straight line** — it's a cycle:
+
+```         
+           Import
+             ↑
+    Communicate → Tidy
+             ↓
+       Model ← Transform
+             ↓
+         Visualize
+```
+
+You might: - Visualize your data, notice something interesting, then go back to transform it further - Build a model, visualize the results, then communicate your findings - Import new data, tidy it, and continue the cycle
+
+### The Pipe Operator: `%>%` or `|>`
+
+One of the tidyverse's signature features is the **pipe operator**, which allows you to write code in a clear, step-by-step style:
+
+```{r}
+#| eval: false
+
+data |>
+  filter(condition) |>
+  group_by(category) |>
+  summarize(mean_value = mean(value))
+```
+
+Each step takes the result from the previous step and passes it along, making your code read like a recipe.
+
+------------------------------------------------------------------------
+
+## 🎯 Putting It All Together
+
+Here's how the tidyverse workflow might look in practice:
+
+```{r}
+#| eval: false
+
+# 1. Import the data
+library(tidyverse)
+data <- read_csv("survey_data.csv")
+
+# 2. Tidy - reshape if needed
+data_tidy <- data |>
+  pivot_longer(cols = starts_with("q"), 
+               names_to = "question", 
+               values_to = "response")
+
+# 3. Transform - clean and summarize
+data_clean <- data_tidy |>
+  filter(age > 18) |>
+  mutate(age_group = case_when(
+    age < 30 ~ "18-29",
+    age < 50 ~ "30-49",
+    TRUE ~ "50+"
+  ))
+
+# 4. Visualize
+data_clean |>
+  ggplot(aes(x = age_group, y = response)) +
+  geom_boxplot(fill = "#2A9D8F")
+
+# 5. Model (linear model example)
+model <- lm(response ~ age_group, data = data_clean)
+
+# 6. Communicate results in a Quarto document
+```
+
+------------------------------------------------------------------------
+
+## 📝 Quick Reference: Function Sources
+
+| Source | How to Use | Examples |
+|--------------------|-----------------------------|------------------------|
+| **Base R** | Always available | `mean()`, `sum()`, `length()`, `summary()`, `str()`, `head()` |
+| **Package** | Load with `library()` or use `package::function()` | `filter()`, `summarize()`, `ggplot()`, `pivot_longer()` |
+| **Custom** | Write your own with `function()` | `clean_data()`, `my_plot()`, `mean_with_message()` |
+
+------------------------------------------------------------------------
+
+## References
+
+Allaire, J. J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., & Iannone, R. (2022). *rmarkdown: Dynamic Documents for R*. https://rmarkdown.rstudio.com/
+
+Chang, W., Cheng, J., Allaire, J. J., Sievert, C., Schloerke, B., Xie, Y., Allen, J., McPherson, J., Dipert, A., & Borges, B. (2022). *shiny: Web Application Framework for R*. https://shiny.rstudio.com/
+
+Dowle, M., & Srinivasan, A. (2021). *data.table: Extension of `data.frame`*. https://CRAN.R-project.org/package=data.table
+
+Grolemund, G., & Wickham, H. (2011). Dates and Times Made Easy with lubridate. *Journal of Statistical Software*, 40(3), 1–25. https://doi.org/10.18637/jss.v040.i03
+
+Kuhn, M. (2008). Building Predictive Models in R Using the caret Package. *Journal of Statistical Software*, 28(5), 1–26. https://doi.org/10.18637/jss.v028.i05
+
+Kuhn, M., & Wickham, H. (2020). *Tidymodels: A Collection of Packages for Modeling and Machine Learning Using Tidyverse Principles*. https://tidymodels.org/
+
+Liaw, A., & Wiener, M. (2002). Classification and Regression by randomForest. *R News*, 2(3), 18–22.
+
+Posit PBC. (2025). *Tidyverse*. https://www.tidyverse.org/
+
+R Core Team. (2026). *An Introduction to R*. The Comprehensive R Archive Network. https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+
+Sievert, C. (2020). *Interactive Web-Based Data Visualization with R, plotly, and shiny*. Chapman and Hall/CRC. https://plotly-r.com/
+
+Vaidyanathan, R., Xie, Y., Allaire, J. J., Cheng, J., Sievert, C., & Russell, K. (2021). *htmlwidgets: HTML Widgets for R*. https://CRAN.R-project.org/package=htmlwidgets
+
+Wickham, H. (2014). Tidy Data. *Journal of Statistical Software*, 59(10), 1–23. https://doi.org/10.18637/jss.v059.i10
+
+Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis*. Springer-Verlag New York. https://ggplot2.tidyverse.org
+
+Wickham, H. (2019). *Advanced R* (2nd ed.). Chapman and Hall/CRC. https://adv-r.hadley.nz/
+
+Wickham, H., & Grolemund, G. (2023). *R for Data Science* (2nd ed.). O'Reilly. https://r4ds.hadley.nz/
+
+Wickham, H., & Miller, E. (2021). *haven: Import and Export 'SPSS', 'Stata' and 'SAS' Files*. https://CRAN.R-project.org/package=haven
+
+Wickham, H., Hester, J., & Bryan, J. (2022). *readr: Read Rectangular Text Data*. https://CRAN.R-project.org/package=readr
+
+Wickham, H., Müller, K., & François, R. (2023). *dplyr: A Grammar of Data Manipulation*. https://CRAN.R-project.org/package=dplyr
+
+Wickham, H., Müller, K., & RStudio. (2021). *DBI: R Database Interface*. https://CRAN.R-project.org/package=DBI
+
+------------------------------------------------------------------------
+
+##  Ride the Tide with Us
+
+Understanding packages, functions, and the tidyverse workflow are essential steps in your R journey. The tidyverse isn't just a collection of packages — it's a **philosophy** that makes data science more accessible, consistent, and fun.
+
+In future posts, we'll dive deeper into each step of this workflow with hands-on examples:
+
+- Importing data with `readr`
+- Tidying messy datasets with `tidyr`
+- Transforming data with `dplyr` verbs
+- Visualizing with `ggplot2`
+- Modeling with `tidymodels`
+- Communicating results with Quarto
+
+::: {style="text-align: center; margin: 2rem 0;"}
+![](../images/rtide-logo.png){width="100px"}
+
+*Stay curious. Stay connected. Ride the tide together.*
+
+*— The R-Tide Community*
+:::
