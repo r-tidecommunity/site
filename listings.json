@@ -1,9 +1,16 @@
 [
   {
+    "listing": "/tidytuesday.html",
+    "items": [
+      "/tidytuesday/2026_07_08.html"
+    ]
+  },
+  {
     "listing": "/blog.html",
     "items": [
-      "/posts/post2.html",
-      "/posts/post1.html"
+      "/posts/loading_data_in_r.html",
+      "/posts/understanding_packages_functions_tidyverse_workflow.html",
+      "/posts/what_is_r.html"
     ]
   }
 ]

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Weekly data visualizations and explorations using TidyTuesday datasets">
 
-<title>index</title>
+<title>TidyTuesday</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,6 +35,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/rtide.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -71,7 +74,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-date','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -95,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -103,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tidytuesday.html"> 
+    <a class="nav-link active" href="./tidytuesday.html" aria-current="page"> 
 <span class="menu-text">TidyTuesday</span></a>
   </li>  
 </ul>
@@ -117,155 +178,76 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#r-tide" id="toc-r-tide" class="nav-link active" data-scroll-target="#r-tide"><img src="images/rtide.png" class="img-fluid" width="100"> R-Tide</a></li>
-  <li><a href="#mission-vision" id="toc-mission-vision" class="nav-link" data-scroll-target="#mission-vision">Mission &amp; Vision</a></li>
-  <li><a href="#what-we-believe" id="toc-what-we-believe" class="nav-link" data-scroll-target="#what-we-believe">What We Believe</a></li>
-  <li><a href="#who-is-r-tide-for" id="toc-who-is-r-tide-for" class="nav-link" data-scroll-target="#who-is-r-tide-for">Who Is R-Tide For?</a></li>
-  <li><a href="#how-r-tide-works" id="toc-how-r-tide-works" class="nav-link" data-scroll-target="#how-r-tide-works">How R-Tide Works</a></li>
-  <li><a href="#get-in-touch" id="toc-get-in-touch" class="nav-link" data-scroll-target="#get-in-touch">Get in Touch</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TidyTuesday</h1>
+</div>
+
+<div>
+  <div class="description">
+    Weekly data visualizations and explorations using TidyTuesday datasets
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A new dataset every week. A new chance to practice.</p>
+<p><strong>TidyTuesday</strong> is a weekly data project by the R4DS community — every Tuesday, a new dataset is released for the R community to explore, visualize, and learn from.</p>
+<p>Here at R-Tide, we work through each dataset together.</p>
+<p><strong>1</strong> TidyTuesday explorations published so far.</p>
 
 
 
 
-<!-- Hero -->
-<section id="r-tide" class="level1" style="text-align: center; padding: 3rem 0 2rem 0;">
-<h1><img src="images/rtide.png" class="img-fluid" width="100"> R-Tide</h1>
-<p><strong>A community where R users learn together, share discoveries, and grow alongside the R ecosystem.</strong></p>
-<p>Whether you’re new to R or a seasoned developer — you belong here.</p>
-</section>
-<hr>
-<!-- Why -->
-<div style="background-color: #f8f9fa; padding: 2.5rem; border-radius: 12px; margin: 2rem 0;">
-<p>The R ecosystem moves fast. New packages, evolving tools, endless possibilities.</p>
-<p><strong>Keeping up alone is exhausting. Keeping up together is exciting.</strong></p>
-<p>R-Tide exists so that when one of us learns something new, we all move forward.</p>
-</div>
-<hr>
-<section id="mission-vision" class="level2">
-<h2 class="anchored" data-anchor-id="mission-vision">Mission &amp; Vision</h2>
-<div class="grid">
-<div class="g-col-6">
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Mission
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Build a space where R users of every level learn together, share openly, and support one another.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="g-col-6">
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Vision
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Every R user — beginner or expert — feels connected, supported, and excited to keep learning.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="what-we-believe" class="level2">
-<h2 class="anchored" data-anchor-id="what-we-believe">What We Believe</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>Learning is collaborative.</strong> Questions are welcome. Discoveries are shared.</p>
-</div>
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>Everyone contributes.</strong> Students, analysts, developers, educators — all have something to offer.</p>
-</div>
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>We rise together.</strong> When the tide comes in, it lifts every boat.</p>
-</div>
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>R stays accessible.</strong> As the ecosystem grows, we help each other understand what’s new and why it matters.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="who-is-r-tide-for" class="level2">
-<h2 class="anchored" data-anchor-id="who-is-r-tide-for">Who Is R-Tide For?</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #2A9D8F;">
-<p><strong>Data Analysts &amp; Scientists</strong> New packages and best practices, together.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #1A3A5C;">
-<p><strong>Shiny Developers</strong> Features, deployment tips, and app inspiration.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #00B4D8;">
-<p><strong>Quarto Users</strong> Publishing workflows, formats, and design ideas.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #E76F51;">
-<p><strong>Educators &amp; Researchers</strong> Tools and resources shared across disciplines.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #6C5B7B;">
-<p><strong>Students</strong> A supportive community to find your footing in R.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #F4A261;">
-<p><strong>Community Leaders</strong> Connect with groups strengthening R worldwide.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="how-r-tide-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-r-tide-works">How R-Tide Works</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-<section id="continuous-learning" class="level3" style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%); border-radius: 12px;">
-<h3 class="anchored" data-anchor-id="continuous-learning">Continuous Learning</h3>
-<p>Regular content covering R for analysis, Shiny for dashboards, and Quarto for publishing.</p>
-</section>
-<section id="community-powered" class="level3" style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%); border-radius: 12px;">
-<h3 class="anchored" data-anchor-id="community-powered">Community-Powered</h3>
-<p><strong>Guest curators · Tide Watchers · Open discussions.</strong> Everyone can participate and contribute.</p>
-</section>
-</div>
-<hr>
-</section>
-<section id="get-in-touch" class="level2">
-<h2 class="anchored" data-anchor-id="get-in-touch">Get in Touch</h2>
-<div style="text-align: center; padding: 2rem; background-color: #f8f9fa; border-radius: 12px; margin: 2rem 0;">
-<p>Have a question, want to contribute, or just want to say hello?</p>
-<p><strong>We’d love to hear from you.</strong></p>
-<p>📧 <a href="mailto:rtidecommunity@gmail.com">rtidecommunity@gmail.com</a></p>
-</div>
-<hr>
-<div style="text-align: center; padding: 2rem 0 1.5rem 0; color: #6c757d;">
-<p><strong>Stay curious. Stay connected. Ride the tide together.</strong></p>
-<p><em>— The R-Tide Community</em></p>
-</div>
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-2">
+<div class="g-col-1" data-index="0" data-categories="dGlkeXR1ZXNkYXklMkNnZ3Bsb3QyJTJDZHBseXI=" data-listing-date-sort="1783458000000" data-listing-file-modified-sort="1785331831962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1028">
+<a href="./tidytuesday/2026_07_08.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+TidyTuesday: Mario Kart 64 World Records
+</h5>
+<div class="listing-categories">
 
+<div class="listing-category" onclick="window.quartoListingCategory('dGlkeXR1ZXNkYXk='); return false;">tidytuesday</div>
 
-</section>
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">ggplot2</div>
 
-</main> <!-- /main -->
+<div class="listing-category" onclick="window.quartoListingCategory('ZHBseXI='); return false;">dplyr</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Exploring 25 years of world records in Mario Kart 64 using dplyr and ggplot2</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Jul 8, 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

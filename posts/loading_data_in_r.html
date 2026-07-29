@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-07-01">
-<meta name="description" content="Understanding R, its history, and why it matters for data science">
+<meta name="dcterms.date" content="2026-07-03">
+<meta name="description" content="Learn how to load Excel files, explore their sheets, and import public data from the web">
 
-<title>What is R? A Beginner’s Introduction</title>
+<title>Loading Data in R: Excel Files, Multiple Sheets, and TidyTuesday</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -98,11 +133,15 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../blog.html"> 
 <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tidytuesday.html"> 
+<span class="menu-text">TidyTuesday</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -120,18 +159,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#a-beginners-introduction" id="toc-a-beginners-introduction" class="nav-link active" data-scroll-target="#a-beginners-introduction">A Beginner’s Introduction</a></li>
-  <li><a href="#a-brief-history-of-r" id="toc-a-brief-history-of-r" class="nav-link" data-scroll-target="#a-brief-history-of-r">A Brief History of R</a></li>
-  <li><a href="#from-rstudio-to-posit" id="toc-from-rstudio-to-posit" class="nav-link" data-scroll-target="#from-rstudio-to-posit">From RStudio to Posit</a></li>
-  <li><a href="#what-is-r-used-for" id="toc-what-is-r-used-for" class="nav-link" data-scroll-target="#what-is-r-used-for">What is R Used For?</a></li>
-  <li><a href="#resources-for-beginners" id="toc-resources-for-beginners" class="nav-link" data-scroll-target="#resources-for-beginners">Resources for Beginners</a>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#loading-excel-files-with-readxl" id="toc-loading-excel-files-with-readxl" class="nav-link" data-scroll-target="#loading-excel-files-with-readxl">Loading Excel Files with <code>readxl</code></a>
   <ul class="collapse">
-  <li><a href="#online-textbooks-guides" id="toc-online-textbooks-guides" class="nav-link" data-scroll-target="#online-textbooks-guides">📖 Online Textbooks &amp; Guides</a></li>
-  <li><a href="#free-online-courses" id="toc-free-online-courses" class="nav-link" data-scroll-target="#free-online-courses">🎓 Free Online Courses</a></li>
-  <li><a href="#learning-inside-r" id="toc-learning-inside-r" class="nav-link" data-scroll-target="#learning-inside-r">🖥️ Learning Inside R</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">🛠️ Getting Started</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">Basic Usage</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#loading-excel-files-from-a-url" id="toc-loading-excel-files-from-a-url" class="nav-link" data-scroll-target="#loading-excel-files-from-a-url">Loading Excel Files from a URL</a></li>
+  <li><a href="#loading-csv-files-directly-from-urls" id="toc-loading-csv-files-directly-from-urls" class="nav-link" data-scroll-target="#loading-csv-files-directly-from-urls">Loading CSV Files Directly from URLs</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference">Quick Reference</a></li>
   <li><a href="#ride-the-tide-with-us" id="toc-ride-the-tide-with-us" class="nav-link" data-scroll-target="#ride-the-tide-with-us">Ride the Tide with Us</a></li>
   </ul>
 </nav>
@@ -141,17 +176,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">What is R? A Beginner’s Introduction</h1>
+<h1 class="title">Loading Data in R: Excel Files, Multiple Sheets, and TidyTuesday</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
-    <div class="quarto-category">beginner</div>
-    <div class="quarto-category">introduction</div>
+    <div class="quarto-category">data-import</div>
+    <div class="quarto-category">excel</div>
+    <div class="quarto-category">tidyverse</div>
+    <div class="quarto-category">tidyTuesday</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Understanding R, its history, and why it matters for data science
+    Learn how to load Excel files, explore their sheets, and import public data from the web
   </div>
 </div>
 
@@ -162,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2026</p>
+      <p class="date">July 3, 2026</p>
     </div>
   </div>
   
@@ -174,148 +211,174 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to R-Tide! If you’re new to R, or just curious about what makes it so special, this post is for you. We’ll explore what R is, where it came from, how it evolved, and where you can start your learning journey.</p>
+<p>Welcome back to R-Tide!</p>
+<p>In our previous posts, we explored what R is, learned about packages and functions, and discovered the tidyverse workflow. Now it’s time to get practical:<strong>loading data</strong> is the first step in any data analysis project.</p>
+<p>In this post, we’ll cover:</p>
+<ol type="1">
+<li><strong>Loading Excel files</strong> with the <code>readxl</code> package</li>
+<li><strong>Exploring sheets</strong> in a workbook</li>
+<li><strong>Loading data from multiple sheets</strong> at once</li>
+<li><strong>Loading data directly from URLs</strong></li>
+</ol>
 <hr>
-<section id="a-beginners-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="a-beginners-introduction">A Beginner’s Introduction</h2>
-<p><strong>R is a language and environment for statistical computing and graphics</strong> (R Core Team, 2026). At its heart, R is designed for people who work with data, whether that’s analyzing survey results, building predictive models, or creating publication-quality visualizations.</p>
-<p>But R is more than just a programming language. The R Project describes it as an “environment”—a fully planned and coherent system for data manipulation, calculation, and graphical display. This environment includes:</p>
-<ul>
-<li>Effective data handling and storage</li>
-<li>Tools for calculations on arrays and matrices</li>
-<li>A large collection of intermediate tools for data analysis</li>
-<li>Graphical facilities for display on-screen or in print</li>
-<li>A programming language with conditionals, loops, and user-defined functions</li>
-</ul>
-<p>One of R’s greatest strengths is its <strong>extensibility</strong>. Users can add new functionality by defining functions or installing packages—collections of code, documentation, and data created by the community. Today, thousands of packages are available through CRAN (the Comprehensive R Archive Network), covering everything from machine learning to bioinformatics.</p>
-<p>R is also <strong>free and open-source</strong>. It’s a GNU project, available under the GNU General Public License, which means anyone can download, use, and modify it without cost (GNU Project, 2026).</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<p>First, let’s load the packages we’ll need:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)      <span class="co"># For reading Excel files</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># For data manipulation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Note:</strong> If you haven’t installed these packages yet, run this once in your R console:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"tidyverse"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="a-brief-history-of-r" class="level2">
-<h2 class="anchored" data-anchor-id="a-brief-history-of-r">A Brief History of R</h2>
-<p>R’s story begins with another language: <strong>S</strong>. S was developed at Bell Laboratories in the 1970s and 1980s by John Chambers and colleagues as a tool for statistical computing (Chambers, 1998). It was designed by statisticians—not computer scientists—to link together calls to trusted FORTRAN packages.</p>
-<p><strong>R was created in 1993 by Ross Ihaka and Robert Gentleman</strong> at the University of Auckland, New Zealand (Ihaka &amp; Gentleman, 1996). The name “R” is a playful nod to both its creators’ first names and its relationship to the S language.</p>
-<p>The project was conceived in 1992, with an initial version released in 1995 and a stable beta version in 2000 (R Core Team, 2026). R became an official part of the GNU Project in December 1997 (GNU Project, 2026).</p>
-<p>While R’s syntax resembles S, its underlying implementation is actually derived from <strong>Scheme</strong>, a dialect of Lisp (Ihaka &amp; Gentleman, 1996). The developers first wrote an interpreter for a Scheme subset and then progressively modified it to resemble S.</p>
-<p>Key milestones in R’s development include:</p>
+<section id="loading-excel-files-with-readxl" class="level2">
+<h2 class="anchored" data-anchor-id="loading-excel-files-with-readxl">Loading Excel Files with <code>readxl</code></h2>
+<p>The <strong><code>readxl</code></strong> package is the gold standard for reading Excel files in R. It’s part of the tidyverse ecosystem and works with both <code>.xls</code> and <code>.xlsx</code> files.</p>
+<section id="basic-usage" class="level3">
+<h3 class="anchored" data-anchor-id="basic-usage">Basic Usage</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a single sheet from an Excel file</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"path/to/your/file.xlsx"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># By default, it reads the first sheet</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="loading-excel-files-from-a-url" class="level2">
+<h2 class="anchored" data-anchor-id="loading-excel-files-from-a-url">Loading Excel Files from a URL</h2>
+<p>Let’s load an Excel file directly from the web:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># URL for the Excel file</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/teamarnab/Advanced-Excel/main/Advance%20Excel%20Practice.xlsx"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary file</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>temp_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xlsx"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the workbook</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url, <span class="at">destfile =</span> temp_file, <span class="at">mode =</span> <span class="st">"wb"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="exploring-sheets-with-excel_sheets" class="level4">
+<h4 class="anchored" data-anchor-id="exploring-sheets-with-excel_sheets">Exploring Sheets with <code>excel_sheets()</code></h4>
+<p>Before you import data, it’s often useful to know what sheets are in your workbook:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List all sheet names in the workbook</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sheets <span class="ot">&lt;-</span> <span class="fu">excel_sheets</span>(temp_file)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sheets)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "PROJECT 1"           "Orders"              "Products"           
+ [4] "Countries"           "Warehouse Extension" "Summary Chart"      
+ [7] "PROJECT 2"           "Team Selector"       "Beer Prices"        
+[10] "Price per Ounce"     "PROJECT 3"           "Indicators"         
+[13] "Region Summary"      "PROJECT 4"           "Inventory"          
+[16] "Order Tracker"       "PROJECT 5"           "Product Sales"      
+[19] "Sales by Store"      "New Product"         "PROJECT 6"          
+[22] "Van Collisions"      "Taxi Collisions"     "Monthly Trend"      
+[25] "Collision Causes"    "Sheet1"             </code></pre>
+</div>
+</div>
+</section>
+<section id="reading-a-specific-sheet" class="level4">
+<h4 class="anchored" data-anchor-id="reading-a-specific-sheet">Reading a Specific Sheet</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the 'Inventory' sheet</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>inventory <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file, <span class="at">sheet =</span> <span class="st">'Inventory'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(inventory)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  Country Province Winery Variety Name  Year  `Stock On Hand` `Reorder Quantity`
+  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;              &lt;dbl&gt;
+1 France  Bordeaux Cheva… Bordea… Chev… (200…              26                 15
+2 France  Bordeaux Cheva… Bordea… Chev… (200…              50                 10
+3 France  Bordeaux Cheva… Bordea… Chev… (201…              34                 15
+4 France  Bordeaux Cheva… Bordea… Chev… (201…              15                 10
+5 France  Bordeaux Cheva… Bordea… Chev… (201…              28                 15
+6 France  Bordeaux Cheva… Bordea… Chev… (201…              36                 15
+# ℹ 1 more variable: Price &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="loading-csv-files-directly-from-urls" class="level2">
+<h2 class="anchored" data-anchor-id="loading-csv-files-directly-from-urls">Loading CSV Files Directly from URLs</h2>
+<p>Loading CSV files from URLs is even simpler:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a CSV file directly from a URL</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: TidyTuesday Mario Kart records</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>records <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(records)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  track         type  shortcut player system_played date       time_period  time
+  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;         &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;
+1 Luigi Raceway Thre… No       Salam  NTSC          1997-02-15 2M 12.99S    133.
+2 Luigi Raceway Thre… No       Booth  NTSC          1997-02-16 2M 9.99S     130.
+3 Luigi Raceway Thre… No       Salam  NTSC          1997-02-16 2M 8.99S     129.
+4 Luigi Raceway Thre… No       Salam  NTSC          1997-02-28 2M 6.99S     127.
+5 Luigi Raceway Thre… No       Gregg… NTSC          1997-03-07 2M 4.51S     125.
+6 Luigi Raceway Thre… No       Rocky… NTSC          1997-04-30 2M 2.89S     123.
+# ℹ 1 more variable: record_duration &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="quick-reference" class="level2">
+<h2 class="anchored" data-anchor-id="quick-reference">Quick Reference</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Year</th>
-<th>Milestone</th>
+<th style="text-align: left;">Task</th>
+<th style="text-align: left;">Function</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>1993</strong></td>
-<td>R is first created by Ihaka and Gentleman</td>
+<td style="text-align: left;"><strong>List sheets (Excel)</strong></td>
+<td style="text-align: left;"><code>excel_sheets("file.xlsx")</code></td>
 </tr>
 <tr class="even">
-<td><strong>1995</strong></td>
-<td>Initial version released</td>
+<td style="text-align: left;"><strong>Read Excel sheet</strong></td>
+<td style="text-align: left;"><code>read_excel("file.xlsx", sheet = "Sheet2")</code></td>
 </tr>
 <tr class="odd">
-<td><strong>1997</strong></td>
-<td>R becomes an official GNU Project; CRAN launched</td>
+<td style="text-align: left;"><strong>Read all sheets</strong></td>
+<td style="text-align: left;"><code>map(excel_sheets("file.xlsx"), ~ read_excel("file.xlsx", sheet = .x))</code></td>
 </tr>
 <tr class="even">
-<td><strong>2000</strong></td>
-<td>Version 1.0 released—considered stable for production</td>
-</tr>
-<tr class="odd">
-<td><strong>2004</strong></td>
-<td>Version 2.0 introduced lazy loading</td>
-</tr>
-<tr class="even">
-<td><strong>2013</strong></td>
-<td>Version 3.0 released</td>
+<td style="text-align: left;"><strong>Read CSV from URL</strong></td>
+<td style="text-align: left;"><code>read_csv("https://...")</code></td>
 </tr>
 </tbody>
 </table>
-<p>Today, R is developed by the R Development Core Team and supported by the R Foundation for Statistical Computing.</p>
 <hr>
-</section>
-<section id="from-rstudio-to-posit" class="level2">
-<h2 class="anchored" data-anchor-id="from-rstudio-to-posit">From RStudio to Posit</h2>
-<p>If you’ve been around R for a while, you’ve probably heard of <strong>RStudio</strong>—the popular integrated development environment (IDE) that made working with R much easier.</p>
-<p>RStudio was founded by J.J. Allaire in 2009 as an open-source project, with Joe Cheng joining soon after to help develop the <strong>Shiny</strong> web framework in 2012. Over the years, the company brought on key contributors including <strong>Hadley Wickham</strong> (creator of <code>ggplot2</code> and the <code>tidyverse</code>), <strong>Garrett Grolemund</strong> (creator of <code>lubridate</code>), and <strong>Yihui Xie</strong> (creator of <code>knitr</code> and <code>R Markdown</code>).</p>
-<p>In 2020, RStudio became a <strong>Public Benefit Corporation (PBC)</strong> , codifying its open-source mission into its corporate charter and balancing the interests of community, customers, employees, and shareholders (Posit PBC, 2025).</p>
-<p>In July 2022, the company announced a <strong>name change to Posit PBC</strong>. This wasn’t a move away from R—in fact, as Chief Scientist Hadley Wickham put it, “I’m not going to stop writing R code” (Wickham, 2022). Rather, the name change reflected the company’s broadening focus to support other programming languages like Python, making it a “single home for R &amp; Python” data science.</p>
-<p>Today, Posit continues to lead contributions to over 250 open-source projects, with the RStudio IDE remaining the premier environment for R development.</p>
-<hr>
-</section>
-<section id="what-is-r-used-for" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-r-used-for">What is R Used For?</h2>
-<p>R is incredibly versatile. Here are some of its most common use cases:</p>
-<p><strong>Data Science &amp; Machine Learning</strong></p>
-<p>R is a go-to language for predictive modeling, clustering, classification, and AI applications. Libraries like <code>caret</code>, <code>randomForest</code>, and <code>xgboost</code> make it easy to develop machine learning models.</p>
-<p><strong>Statistical Analysis &amp; Research</strong></p>
-<p>R is extensively used in academia, scientific research, and economics for hypothesis testing, regression analysis, and survey data interpretation.</p>
-<p><strong>Data Visualization</strong></p>
-<p>Organizations use R to generate interactive dashboards, charts, and reports with packages like <code>ggplot2</code>, <code>shiny</code>, and <code>plotly</code>.</p>
-<p><strong>Healthcare &amp; Bioinformatics</strong></p>
-<p>R plays a crucial role in genomics, drug discovery, and epidemiology through the <code>Bioconductor</code> package.</p>
-<p><strong>Finance &amp; Quantitative Trading</strong></p>
-<p>R is used in financial modeling, risk analysis, and algorithmic trading with packages like <code>quantmod</code> and <code>TTR</code>.</p>
-<p><strong>Government &amp; Policy Analysis</strong></p>
-<p>Government agencies use R for census data analysis, public health research, and social science modeling.</p>
-<hr>
-</section>
-<section id="resources-for-beginners" class="level2">
-<h2 class="anchored" data-anchor-id="resources-for-beginners">Resources for Beginners</h2>
-<p>Starting with R can feel daunting, but there are many excellent (and free!) resources to help you learn:</p>
-<section id="online-textbooks-guides" class="level3">
-<h3 class="anchored" data-anchor-id="online-textbooks-guides">📖 Online Textbooks &amp; Guides</h3>
-<ul>
-<li><strong>R for Data Science (2nd edition)</strong> by Hadley Wickham and Garrett Grolemund — A free online book that introduces you to R, RStudio, and the tidyverse (Wickham &amp; Grolemund, 2023).</li>
-<li><strong>YaRrr! The Pirate’s Guide to R</strong> — A clear, free online textbook for beginners (Phillips, 2025).</li>
-<li><strong>R-Tutor.com</strong> — A well-structured guide with examples (R-Tutor, 2026).</li>
-</ul>
-</section>
-<section id="free-online-courses" class="level3">
-<h3 class="anchored" data-anchor-id="free-online-courses">🎓 Free Online Courses</h3>
-<ul>
-<li><strong>Software Carpentry: R for Reproducible Scientific Analysis</strong> — An introduction to R for people with no programming background (Software Carpentry, 2026).</li>
-<li><strong>RStudio’s Online Learning Guide</strong> — Extensive links to learning resources from getting started to interactive Shiny apps (Posit PBC, 2025).</li>
-</ul>
-</section>
-<section id="learning-inside-r" class="level3">
-<h3 class="anchored" data-anchor-id="learning-inside-r">🖥️ Learning Inside R</h3>
-<ul>
-<li><strong>Swirl</strong> — An R package that teaches you R interactively directly in the R console. Just run <code>install.packages("swirl")</code> to get started (Swirl, 2026).</li>
-</ul>
-</section>
-<section id="getting-started" class="level3">
-<h3 class="anchored" data-anchor-id="getting-started">🛠️ Getting Started</h3>
-<ol type="1">
-<li><strong>Download R</strong> from <a href="https://cran.r-project.org">cran.r-project.org</a></li>
-<li><strong>Download RStudio</strong> (now Posit) from <a href="https://posit.co">posit.co</a></li>
-<li><strong>Follow a beginner tutorial</strong> from the resources above</li>
-</ol>
-</section>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Chambers, J. M. (1998). <em>Programming with Data: A Guide to the S Language</em>. Springer.</p>
-<p>GNU Project. (2026). <em>R: A Language and Environment for Statistical Computing</em>. Free Software Foundation. https://www.gnu.org/software/r/</p>
-<p>Ihaka, R., &amp; Gentleman, R. (1996). R: A Language for Data Analysis and Graphics. <em>Journal of Computational and Graphical Statistics</em>, 5(3), 299–314. https://doi.org/10.2307/1390807</p>
-<p>Phillips, N. (2025). <em>YaRrr! The Pirate’s Guide to R</em>. https://bookdown.org/ndphillips/YaRrr/</p>
-<p>Posit PBC. (2025). <em>About Posit</em>. https://posit.co/about/</p>
-<p>Posit PBC. (2025). <em>RStudio: Integrated Development Environment for R</em>. https://posit.co/products/open-source/rstudio/</p>
-<p>R Core Team. (2026). <em>An Introduction to R</em>. The Comprehensive R Archive Network. https://cran.r-project.org/doc/manuals/r-release/R-intro.html</p>
-<p>R-Tutor. (2026). <em>R Tutorial</em>. https://www.r-tutor.com/</p>
-<p>Software Carpentry. (2026). <em>R for Reproducible Scientific Analysis</em>. https://swcarpentry.github.io/r-novice-gapminder/</p>
-<p>Swirl. (2026). <em>Swirl: Learn R, in R</em>. https://swirlstats.com/</p>
-<p>Wickham, H. (2022, July 27). <em>RStudio is Becoming Posit</em>. [Blog post]. https://posit.co/blog/rstudio-is-becoming-posit/</p>
-<p>Wickham, H., &amp; Grolemund, G. (2023). <em>R for Data Science</em> (2nd ed.). O’Reilly. https://r4ds.hadley.nz/</p>
 </section>
 <section id="ride-the-tide-with-us" class="level2">
 <h2 class="anchored" data-anchor-id="ride-the-tide-with-us">Ride the Tide with Us</h2>
-<p>R is a powerful, open, and welcoming language—and its community is one of the most supportive out there. Whether you’re a complete beginner or a seasoned analyst, there’s always something new to learn.</p>
-<p>That’s what R-Tide is all about. We learn together, share discoveries, and ride the wave of the R ecosystem together.</p>
+<p>Loading data is the first step in any data science project. Whether you’re working with Excel files from colleagues or downloading public datasets from the web, the skills you’ve learned here will serve you well.</p>
+<p>In future posts, we’ll dive deeper into:</p>
+<ul>
+<li><strong>Tidying data</strong> with <code>tidyr</code> (making messy data clean)</li>
+<li><strong>Transforming data</strong> with <code>dplyr</code> verbs</li>
+<li><strong>Visualizing</strong> with <code>ggplot2</code></li>
+</ul>
 <div style="text-align: center; margin: 2rem 0;">
 <p><img src="../images/rtide-logo.png" class="img-fluid" width="100"></p>
-<p><em>Stay curious. Stay connected. Ride the tide together.</em> <em>— The R-Tide Community</em></p>
+<p><em>Stay curious. Stay connected. Ride the tide together.</em></p>
+<p><em>— The R-Tide Community</em></p>
 </div>
 
 

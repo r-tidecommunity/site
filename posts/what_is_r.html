@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-07-01">
+<meta name="description" content="Understanding R, its history, and why it matters for data science">
 
-<title>index</title>
+<title>What is R? A Beginner’s Introduction</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +28,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/rtide.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/rtide.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,9 +85,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/rtide-logo.png" alt="" class="navbar-logo light-content">
-    <img src="./images/rtide-logo.png" alt="" class="navbar-logo dark-content">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/rtide-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../images/rtide-logo.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -95,15 +97,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tidytuesday.html"> 
+    <a class="nav-link" href="../tidytuesday.html"> 
 <span class="menu-text">TidyTuesday</span></a>
   </li>  
 </ul>
@@ -114,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -122,144 +124,202 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-tide" id="toc-r-tide" class="nav-link active" data-scroll-target="#r-tide"><img src="images/rtide.png" class="img-fluid" width="100"> R-Tide</a></li>
-  <li><a href="#mission-vision" id="toc-mission-vision" class="nav-link" data-scroll-target="#mission-vision">Mission &amp; Vision</a></li>
-  <li><a href="#what-we-believe" id="toc-what-we-believe" class="nav-link" data-scroll-target="#what-we-believe">What We Believe</a></li>
-  <li><a href="#who-is-r-tide-for" id="toc-who-is-r-tide-for" class="nav-link" data-scroll-target="#who-is-r-tide-for">Who Is R-Tide For?</a></li>
-  <li><a href="#how-r-tide-works" id="toc-how-r-tide-works" class="nav-link" data-scroll-target="#how-r-tide-works">How R-Tide Works</a></li>
-  <li><a href="#get-in-touch" id="toc-get-in-touch" class="nav-link" data-scroll-target="#get-in-touch">Get in Touch</a></li>
+  <li><a href="#a-beginners-introduction" id="toc-a-beginners-introduction" class="nav-link active" data-scroll-target="#a-beginners-introduction">A Beginner’s Introduction</a></li>
+  <li><a href="#a-brief-history-of-r" id="toc-a-brief-history-of-r" class="nav-link" data-scroll-target="#a-brief-history-of-r">A Brief History of R</a></li>
+  <li><a href="#from-rstudio-to-posit" id="toc-from-rstudio-to-posit" class="nav-link" data-scroll-target="#from-rstudio-to-posit">From RStudio to Posit</a></li>
+  <li><a href="#what-is-r-used-for" id="toc-what-is-r-used-for" class="nav-link" data-scroll-target="#what-is-r-used-for">What is R Used For?</a></li>
+  <li><a href="#resources-for-beginners" id="toc-resources-for-beginners" class="nav-link" data-scroll-target="#resources-for-beginners">Resources for Beginners</a>
+  <ul class="collapse">
+  <li><a href="#online-textbooks-guides" id="toc-online-textbooks-guides" class="nav-link" data-scroll-target="#online-textbooks-guides">📖 Online Textbooks &amp; Guides</a></li>
+  <li><a href="#free-online-courses" id="toc-free-online-courses" class="nav-link" data-scroll-target="#free-online-courses">🎓 Free Online Courses</a></li>
+  <li><a href="#learning-inside-r" id="toc-learning-inside-r" class="nav-link" data-scroll-target="#learning-inside-r">🖥️ Learning Inside R</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">🛠️ Getting Started</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#ride-the-tide-with-us" id="toc-ride-the-tide-with-us" class="nav-link" data-scroll-target="#ride-the-tide-with-us">Ride the Tide with Us</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What is R? A Beginner’s Introduction</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">beginner</div>
+    <div class="quarto-category">introduction</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Understanding R, its history, and why it matters for data science
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<!-- Hero -->
-<section id="r-tide" class="level1" style="text-align: center; padding: 3rem 0 2rem 0;">
-<h1><img src="images/rtide.png" class="img-fluid" width="100"> R-Tide</h1>
-<p><strong>A community where R users learn together, share discoveries, and grow alongside the R ecosystem.</strong></p>
-<p>Whether you’re new to R or a seasoned developer — you belong here.</p>
-</section>
+</header>
+
+
+<p>Welcome to R-Tide! If you’re new to R, or just curious about what makes it so special, this post is for you. We’ll explore what R is, where it came from, how it evolved, and where you can start your learning journey.</p>
 <hr>
-<!-- Why -->
-<div style="background-color: #f8f9fa; padding: 2.5rem; border-radius: 12px; margin: 2rem 0;">
-<p>The R ecosystem moves fast. New packages, evolving tools, endless possibilities.</p>
-<p><strong>Keeping up alone is exhausting. Keeping up together is exciting.</strong></p>
-<p>R-Tide exists so that when one of us learns something new, we all move forward.</p>
-</div>
-<hr>
-<section id="mission-vision" class="level2">
-<h2 class="anchored" data-anchor-id="mission-vision">Mission &amp; Vision</h2>
-<div class="grid">
-<div class="g-col-6">
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Mission
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Build a space where R users of every level learn together, share openly, and support one another.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="g-col-6">
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Vision
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Every R user — beginner or expert — feels connected, supported, and excited to keep learning.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<section id="a-beginners-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="a-beginners-introduction">A Beginner’s Introduction</h2>
+<p><strong>R is a language and environment for statistical computing and graphics</strong> (R Core Team, 2026). At its heart, R is designed for people who work with data, whether that’s analyzing survey results, building predictive models, or creating publication-quality visualizations.</p>
+<p>But R is more than just a programming language. The R Project describes it as an “environment”—a fully planned and coherent system for data manipulation, calculation, and graphical display. This environment includes:</p>
+<ul>
+<li>Effective data handling and storage</li>
+<li>Tools for calculations on arrays and matrices</li>
+<li>A large collection of intermediate tools for data analysis</li>
+<li>Graphical facilities for display on-screen or in print</li>
+<li>A programming language with conditionals, loops, and user-defined functions</li>
+</ul>
+<p>One of R’s greatest strengths is its <strong>extensibility</strong>. Users can add new functionality by defining functions or installing packages—collections of code, documentation, and data created by the community. Today, thousands of packages are available through CRAN (the Comprehensive R Archive Network), covering everything from machine learning to bioinformatics.</p>
+<p>R is also <strong>free and open-source</strong>. It’s a GNU project, available under the GNU General Public License, which means anyone can download, use, and modify it without cost (GNU Project, 2026).</p>
 <hr>
 </section>
-<section id="what-we-believe" class="level2">
-<h2 class="anchored" data-anchor-id="what-we-believe">What We Believe</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>Learning is collaborative.</strong> Questions are welcome. Discoveries are shared.</p>
-</div>
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>Everyone contributes.</strong> Students, analysts, developers, educators — all have something to offer.</p>
-</div>
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>We rise together.</strong> When the tide comes in, it lifts every boat.</p>
-</div>
-<div style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;">
-<p><strong>R stays accessible.</strong> As the ecosystem grows, we help each other understand what’s new and why it matters.</p>
-</div>
-</div>
+<section id="a-brief-history-of-r" class="level2">
+<h2 class="anchored" data-anchor-id="a-brief-history-of-r">A Brief History of R</h2>
+<p>R’s story begins with another language: <strong>S</strong>. S was developed at Bell Laboratories in the 1970s and 1980s by John Chambers and colleagues as a tool for statistical computing (Chambers, 1998). It was designed by statisticians—not computer scientists—to link together calls to trusted FORTRAN packages.</p>
+<p><strong>R was created in 1993 by Ross Ihaka and Robert Gentleman</strong> at the University of Auckland, New Zealand (Ihaka &amp; Gentleman, 1996). The name “R” is a playful nod to both its creators’ first names and its relationship to the S language.</p>
+<p>The project was conceived in 1992, with an initial version released in 1995 and a stable beta version in 2000 (R Core Team, 2026). R became an official part of the GNU Project in December 1997 (GNU Project, 2026).</p>
+<p>While R’s syntax resembles S, its underlying implementation is actually derived from <strong>Scheme</strong>, a dialect of Lisp (Ihaka &amp; Gentleman, 1996). The developers first wrote an interpreter for a Scheme subset and then progressively modified it to resemble S.</p>
+<p>Key milestones in R’s development include:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Year</th>
+<th>Milestone</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1993</strong></td>
+<td>R is first created by Ihaka and Gentleman</td>
+</tr>
+<tr class="even">
+<td><strong>1995</strong></td>
+<td>Initial version released</td>
+</tr>
+<tr class="odd">
+<td><strong>1997</strong></td>
+<td>R becomes an official GNU Project; CRAN launched</td>
+</tr>
+<tr class="even">
+<td><strong>2000</strong></td>
+<td>Version 1.0 released—considered stable for production</td>
+</tr>
+<tr class="odd">
+<td><strong>2004</strong></td>
+<td>Version 2.0 introduced lazy loading</td>
+</tr>
+<tr class="even">
+<td><strong>2013</strong></td>
+<td>Version 3.0 released</td>
+</tr>
+</tbody>
+</table>
+<p>Today, R is developed by the R Development Core Team and supported by the R Foundation for Statistical Computing.</p>
 <hr>
 </section>
-<section id="who-is-r-tide-for" class="level2">
-<h2 class="anchored" data-anchor-id="who-is-r-tide-for">Who Is R-Tide For?</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #2A9D8F;">
-<p><strong>Data Analysts &amp; Scientists</strong> New packages and best practices, together.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #1A3A5C;">
-<p><strong>Shiny Developers</strong> Features, deployment tips, and app inspiration.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #00B4D8;">
-<p><strong>Quarto Users</strong> Publishing workflows, formats, and design ideas.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #E76F51;">
-<p><strong>Educators &amp; Researchers</strong> Tools and resources shared across disciplines.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #6C5B7B;">
-<p><strong>Students</strong> A supportive community to find your footing in R.</p>
-</div>
-<div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #F4A261;">
-<p><strong>Community Leaders</strong> Connect with groups strengthening R worldwide.</p>
-</div>
-</div>
+<section id="from-rstudio-to-posit" class="level2">
+<h2 class="anchored" data-anchor-id="from-rstudio-to-posit">From RStudio to Posit</h2>
+<p>If you’ve been around R for a while, you’ve probably heard of <strong>RStudio</strong>—the popular integrated development environment (IDE) that made working with R much easier.</p>
+<p>RStudio was founded by J.J. Allaire in 2009 as an open-source project, with Joe Cheng joining soon after to help develop the <strong>Shiny</strong> web framework in 2012. Over the years, the company brought on key contributors including <strong>Hadley Wickham</strong> (creator of <code>ggplot2</code> and the <code>tidyverse</code>), <strong>Garrett Grolemund</strong> (creator of <code>lubridate</code>), and <strong>Yihui Xie</strong> (creator of <code>knitr</code> and <code>R Markdown</code>).</p>
+<p>In 2020, RStudio became a <strong>Public Benefit Corporation (PBC)</strong> , codifying its open-source mission into its corporate charter and balancing the interests of community, customers, employees, and shareholders (Posit PBC, 2025).</p>
+<p>In July 2022, the company announced a <strong>name change to Posit PBC</strong>. This wasn’t a move away from R—in fact, as Chief Scientist Hadley Wickham put it, “I’m not going to stop writing R code” (Wickham, 2022). Rather, the name change reflected the company’s broadening focus to support other programming languages like Python, making it a “single home for R &amp; Python” data science.</p>
+<p>Today, Posit continues to lead contributions to over 250 open-source projects, with the RStudio IDE remaining the premier environment for R development.</p>
 <hr>
 </section>
-<section id="how-r-tide-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-r-tide-works">How R-Tide Works</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-<section id="continuous-learning" class="level3" style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%); border-radius: 12px;">
-<h3 class="anchored" data-anchor-id="continuous-learning">Continuous Learning</h3>
-<p>Regular content covering R for analysis, Shiny for dashboards, and Quarto for publishing.</p>
-</section>
-<section id="community-powered" class="level3" style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%); border-radius: 12px;">
-<h3 class="anchored" data-anchor-id="community-powered">Community-Powered</h3>
-<p><strong>Guest curators · Tide Watchers · Open discussions.</strong> Everyone can participate and contribute.</p>
-</section>
-</div>
+<section id="what-is-r-used-for" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-r-used-for">What is R Used For?</h2>
+<p>R is incredibly versatile. Here are some of its most common use cases:</p>
+<p><strong>Data Science &amp; Machine Learning</strong></p>
+<p>R is a go-to language for predictive modeling, clustering, classification, and AI applications. Libraries like <code>caret</code>, <code>randomForest</code>, and <code>xgboost</code> make it easy to develop machine learning models.</p>
+<p><strong>Statistical Analysis &amp; Research</strong></p>
+<p>R is extensively used in academia, scientific research, and economics for hypothesis testing, regression analysis, and survey data interpretation.</p>
+<p><strong>Data Visualization</strong></p>
+<p>Organizations use R to generate interactive dashboards, charts, and reports with packages like <code>ggplot2</code>, <code>shiny</code>, and <code>plotly</code>.</p>
+<p><strong>Healthcare &amp; Bioinformatics</strong></p>
+<p>R plays a crucial role in genomics, drug discovery, and epidemiology through the <code>Bioconductor</code> package.</p>
+<p><strong>Finance &amp; Quantitative Trading</strong></p>
+<p>R is used in financial modeling, risk analysis, and algorithmic trading with packages like <code>quantmod</code> and <code>TTR</code>.</p>
+<p><strong>Government &amp; Policy Analysis</strong></p>
+<p>Government agencies use R for census data analysis, public health research, and social science modeling.</p>
 <hr>
 </section>
-<section id="get-in-touch" class="level2">
-<h2 class="anchored" data-anchor-id="get-in-touch">Get in Touch</h2>
-<div style="text-align: center; padding: 2rem; background-color: #f8f9fa; border-radius: 12px; margin: 2rem 0;">
-<p>Have a question, want to contribute, or just want to say hello?</p>
-<p><strong>We’d love to hear from you.</strong></p>
-<p>📧 <a href="mailto:rtidecommunity@gmail.com">rtidecommunity@gmail.com</a></p>
-</div>
-<hr>
-<div style="text-align: center; padding: 2rem 0 1.5rem 0; color: #6c757d;">
-<p><strong>Stay curious. Stay connected. Ride the tide together.</strong></p>
-<p><em>— The R-Tide Community</em></p>
+<section id="resources-for-beginners" class="level2">
+<h2 class="anchored" data-anchor-id="resources-for-beginners">Resources for Beginners</h2>
+<p>Starting with R can feel daunting, but there are many excellent (and free!) resources to help you learn:</p>
+<section id="online-textbooks-guides" class="level3">
+<h3 class="anchored" data-anchor-id="online-textbooks-guides">📖 Online Textbooks &amp; Guides</h3>
+<ul>
+<li><strong>R for Data Science (2nd edition)</strong> by Hadley Wickham and Garrett Grolemund — A free online book that introduces you to R, RStudio, and the tidyverse (Wickham &amp; Grolemund, 2023).</li>
+<li><strong>YaRrr! The Pirate’s Guide to R</strong> — A clear, free online textbook for beginners (Phillips, 2025).</li>
+<li><strong>R-Tutor.com</strong> — A well-structured guide with examples (R-Tutor, 2026).</li>
+</ul>
+</section>
+<section id="free-online-courses" class="level3">
+<h3 class="anchored" data-anchor-id="free-online-courses">🎓 Free Online Courses</h3>
+<ul>
+<li><strong>Software Carpentry: R for Reproducible Scientific Analysis</strong> — An introduction to R for people with no programming background (Software Carpentry, 2026).</li>
+<li><strong>RStudio’s Online Learning Guide</strong> — Extensive links to learning resources from getting started to interactive Shiny apps (Posit PBC, 2025).</li>
+</ul>
+</section>
+<section id="learning-inside-r" class="level3">
+<h3 class="anchored" data-anchor-id="learning-inside-r">🖥️ Learning Inside R</h3>
+<ul>
+<li><strong>Swirl</strong> — An R package that teaches you R interactively directly in the R console. Just run <code>install.packages("swirl")</code> to get started (Swirl, 2026).</li>
+</ul>
+</section>
+<section id="getting-started" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started">🛠️ Getting Started</h3>
+<ol type="1">
+<li><strong>Download R</strong> from <a href="https://cran.r-project.org">cran.r-project.org</a></li>
+<li><strong>Download RStudio</strong> (now Posit) from <a href="https://posit.co">posit.co</a></li>
+<li><strong>Follow a beginner tutorial</strong> from the resources above</li>
+</ol>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Chambers, J. M. (1998). <em>Programming with Data: A Guide to the S Language</em>. Springer.</p>
+<p>GNU Project. (2026). <em>R: A Language and Environment for Statistical Computing</em>. Free Software Foundation. https://www.gnu.org/software/r/</p>
+<p>Ihaka, R., &amp; Gentleman, R. (1996). R: A Language for Data Analysis and Graphics. <em>Journal of Computational and Graphical Statistics</em>, 5(3), 299–314. https://doi.org/10.2307/1390807</p>
+<p>Phillips, N. (2025). <em>YaRrr! The Pirate’s Guide to R</em>. https://bookdown.org/ndphillips/YaRrr/</p>
+<p>Posit PBC. (2025). <em>About Posit</em>. https://posit.co/about/</p>
+<p>Posit PBC. (2025). <em>RStudio: Integrated Development Environment for R</em>. https://posit.co/products/open-source/rstudio/</p>
+<p>R Core Team. (2026). <em>An Introduction to R</em>. The Comprehensive R Archive Network. https://cran.r-project.org/doc/manuals/r-release/R-intro.html</p>
+<p>R-Tutor. (2026). <em>R Tutorial</em>. https://www.r-tutor.com/</p>
+<p>Software Carpentry. (2026). <em>R for Reproducible Scientific Analysis</em>. https://swcarpentry.github.io/r-novice-gapminder/</p>
+<p>Swirl. (2026). <em>Swirl: Learn R, in R</em>. https://swirlstats.com/</p>
+<p>Wickham, H. (2022, July 27). <em>RStudio is Becoming Posit</em>. [Blog post]. https://posit.co/blog/rstudio-is-becoming-posit/</p>
+<p>Wickham, H., &amp; Grolemund, G. (2023). <em>R for Data Science</em> (2nd ed.). O’Reilly. https://r4ds.hadley.nz/</p>
+</section>
+<section id="ride-the-tide-with-us" class="level2">
+<h2 class="anchored" data-anchor-id="ride-the-tide-with-us">Ride the Tide with Us</h2>
+<p>R is a powerful, open, and welcoming language—and its community is one of the most supportive out there. Whether you’re a complete beginner or a seasoned analyst, there’s always something new to learn.</p>
+<p>That’s what R-Tide is all about. We learn together, share discoveries, and ride the wave of the R ecosystem together.</p>
+<div style="text-align: center; margin: 2rem 0;">
+<p><img src="../images/rtide-logo.png" class="img-fluid" width="100"></p>
+<p><em>Stay curious. Stay connected. Ride the tide together.</em> <em>— The R-Tide Community</em></p>
 </div>
 
 
