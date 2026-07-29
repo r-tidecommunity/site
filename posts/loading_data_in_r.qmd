@@ -1,0 +1,154 @@
+---
+title: "Loading Data in R: Excel Files, Multiple Sheets, and TidyTuesday"
+description: "Learn how to load Excel files, explore their sheets, and import public data from the web"
+date: "2026-07-03"
+categories: [R, data-import, excel, tidyverse, tidyTuesday]
+---
+
+Welcome back to R-Tide! 
+
+In our previous posts, we explored what R is, learned about packages and functions, and discovered the tidyverse workflow. Now it's time to get practical:**loading data** is the first step in any data analysis project.
+
+In this post, we'll cover:
+
+1. **Loading Excel files** with the `readxl` package
+2. **Exploring sheets** in a workbook
+3. **Loading data from multiple sheets** at once
+4. **Loading data directly from URLs**
+
+---
+
+## Getting Started
+
+First, let's load the packages we'll need:
+
+```{r}
+#| message: false
+#| warning: false
+
+# Load packages
+library(readxl)      # For reading Excel files
+library(tidyverse)   # For data manipulation
+```
+
+**Note:** If you haven't installed these packages yet, run this once in your R console:
+```r
+install.packages(c("readxl", "tidyverse"))
+```
+
+---
+
+## Loading Excel Files with `readxl`
+
+The **`readxl`** package is the gold standard for reading Excel files in R. It's part of the tidyverse ecosystem and works with both `.xls` and `.xlsx` files.
+
+### Basic Usage
+
+```{r}
+#| eval: false
+
+# Load a single sheet from an Excel file
+data <- read_excel("path/to/your/file.xlsx")
+
+# By default, it reads the first sheet
+
+```
+
+---
+
+## Loading Excel Files from a URL
+
+Let's load an Excel file directly from the web:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(readxl)
+
+# URL for the Excel file
+url <- "https://raw.githubusercontent.com/teamarnab/Advanced-Excel/main/Advance%20Excel%20Practice.xlsx"
+
+# Create a temporary file
+temp_file <- tempfile(fileext = ".xlsx")
+
+# Download the workbook
+download.file(url, destfile = temp_file, mode = "wb")
+```
+
+
+#### Exploring Sheets with `excel_sheets()`
+
+Before you import data, it's often useful to know what sheets are in your workbook:
+
+```{r}
+#| message: false
+#| warning: false
+
+# List all sheet names in the workbook
+sheets <- excel_sheets(temp_file)
+print(sheets)
+```
+
+#### Reading a Specific Sheet
+
+```{r}
+#| message: false
+#| warning: false
+
+# Read the 'Inventory' sheet
+inventory <- read_excel(temp_file, sheet = 'Inventory')
+
+# View the first few rows
+head(inventory)
+```
+
+---
+
+## Loading CSV Files Directly from URLs
+
+Loading CSV files from URLs is even simpler:
+
+```{r}
+#| message: false
+#| warning: false
+
+# Read a CSV file directly from a URL
+library(readr)
+
+# Example: TidyTuesday Mario Kart records
+records <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv')
+
+# View the first few rows
+head(records)
+```
+
+
+## Quick Reference
+
+| Task | Function |
+|:-----------------------------------|:-----------------------------------|
+| **List sheets (Excel)** | `excel_sheets("file.xlsx")` |
+| **Read Excel sheet** | `read_excel("file.xlsx", sheet = "Sheet2")` |
+| **Read all sheets** | `map(excel_sheets("file.xlsx"), ~ read_excel("file.xlsx", sheet = .x))` |
+| **Read CSV from URL** | `read_csv("https://...")` |
+
+---
+
+## Ride the Tide with Us
+
+Loading data is the first step in any data science project. Whether you're working with Excel files from colleagues or downloading public datasets from the web, the skills you've learned here will serve you well.
+
+In future posts, we'll dive deeper into:
+
+- **Tidying data** with `tidyr` (making messy data clean)
+- **Transforming data** with `dplyr` verbs
+- **Visualizing** with `ggplot2`
+
+::: {style="text-align: center; margin: 2rem 0;"}
+![](../images/rtide-logo.png){width="100px"}
+
+*Stay curious. Stay connected. Ride the tide together.*
+
+*— The R-Tide Community*
+:::

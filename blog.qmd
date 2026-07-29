@@ -73,3 +73,5 @@ posts <- list.files("posts", pattern = "\\.qmd$", full.names = TRUE)
 total_posts <- length(posts)
 
 ```
+
+**`r total_posts`** posts published so far. 

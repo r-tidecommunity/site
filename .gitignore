@@ -19,3 +19,4 @@ site/
 .quarto/
 /.quarto/
 **/*.quarto_ipynb
+.positai

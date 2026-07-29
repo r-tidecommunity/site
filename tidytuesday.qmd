@@ -1,0 +1,27 @@
+---
+title: "TidyTuesday"
+description: "Weekly data visualizations and explorations using TidyTuesday datasets"
+page-layout: full
+listing:
+  contents: tidytuesday/*.qmd
+  sort: "date desc"
+  type: grid
+  fields: [title, date, description, categories]
+  grid-columns: 2
+---
+
+A new dataset every week. A new chance to practice.
+
+**TidyTuesday** is a weekly data project by the R4DS community — every Tuesday, a new dataset is released for the R community to explore, visualize, and learn from.
+
+Here at R-Tide, we work through each dataset together.
+
+```{r}
+#| echo: false
+#| warning: false
+
+posts <- list.files("tidytuesday", pattern = "\\.qmd$", full.names = TRUE)
+total_posts <- length(posts)
+```
+
+**`r total_posts`** TidyTuesday explorations published so far. 

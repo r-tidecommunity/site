@@ -5,7 +5,7 @@ date: "2026-07-02"
 categories: [R, packages, tidyverse, functions, beginner]
 ---
 
-Welcome back to R-Tide! 
+Welcome back to R-Tide!
 
 In our first post, we explored what R is and why it matters. Now it's time to get hands-on with the tools that make R so powerful. We'll cover three essential topics:
 
@@ -40,7 +40,7 @@ Here are some of the most widely used packages, organized by what they do:
 #### 📊 Data Manipulation
 
 | Package | What It Does |
-|----------------------------|-------------------------------------------|
+|------------------------------------|------------------------------------|
 | **dplyr** | The go-to package for data manipulation — filtering, summarizing, arranging, and joining datasets |
 | **tidyr** | Tools for reshaping data into tidy formats using `pivot_longer()` and `pivot_wider()` |
 | **stringr** | Makes working with text data (strings) easy and consistent |
@@ -50,7 +50,7 @@ Here are some of the most widely used packages, organized by what they do:
 #### 📈 Data Visualization
 
 | Package | What It Does |
-|----------------------------|-------------------------------------------|
+|------------------------------------|------------------------------------|
 | **ggplot2** | R's famous package for creating beautiful graphics using the "grammar of graphics" |
 | **plotly** | Creates interactive, web-based visualizations |
 | **htmlwidgets** | A framework for building JavaScript-based visualizations in R |
@@ -58,7 +58,7 @@ Here are some of the most widely used packages, organized by what they do:
 #### 📥 Data Import
 
 | Package | What It Does |
-|----------------------------|-------------------------------------------|
+|------------------------------------|------------------------------------|
 | **readr** | Fast and friendly way to read CSV, TSV, and other rectangular data |
 | **haven** | Reads data from SAS, SPSS, and Stata files |
 | **DBI** | The standard interface for connecting R to databases |
@@ -66,14 +66,14 @@ Here are some of the most widely used packages, organized by what they do:
 #### 📝 Reporting & Communication
 
 | Package | What It Does |
-|----------------------------|-------------------------------------------|
+|------------------------------------|------------------------------------|
 | **shiny** | Create interactive web apps directly from R |
 | **rmarkdown** | The perfect workflow for reproducible reporting — combine code and text in one document |
 
 #### 🔧 Modeling & Machine Learning
 
 | Package | What It Does |
-|----------------------------|-------------------------------------------|
+|------------------------------------|------------------------------------|
 | **tidymodels** | A collection of packages for modeling using tidyverse principles |
 | **caret** | A framework for training classification and regression models |
 | **randomForest** | Random forest methods for machine learning |
@@ -208,7 +208,7 @@ mean_with_message(c(1, 2, 3, 4, 5))
 
 ------------------------------------------------------------------------
 
-##  The Tidyverse Workflow
+## The Tidyverse Workflow
 
 The **tidyverse** is an opinionated collection of R packages designed for data science that share a common philosophy and grammar. It was created by **Hadley Wickham** and others to make data science in R more consistent and intuitive.
 
@@ -355,7 +355,7 @@ model <- lm(response ~ age_group, data = data_clean)
 ## 📝 Quick Reference: Function Sources
 
 | Source | How to Use | Examples |
-|--------------------|-----------------------------|------------------------|
+|------------------------|------------------------|------------------------|
 | **Base R** | Always available | `mean()`, `sum()`, `length()`, `summary()`, `str()`, `head()` |
 | **Package** | Load with `library()` or use `package::function()` | `filter()`, `summarize()`, `ggplot()`, `pivot_longer()` |
 | **Custom** | Write your own with `function()` | `clean_data()`, `my_plot()`, `mean_with_message()` |
@@ -404,7 +404,7 @@ Wickham, H., Müller, K., & RStudio. (2021). *DBI: R Database Interface*. https:
 
 ------------------------------------------------------------------------
 
-##  Ride the Tide with Us
+## Ride the Tide with Us
 
 Understanding packages, functions, and the tidyverse workflow are essential steps in your R journey. The tidyverse isn't just a collection of packages — it's a **philosophy** that makes data science more accessible, consistent, and fun.
 

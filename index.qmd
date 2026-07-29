@@ -2,121 +2,105 @@
 page-layout: full
 ---
 
-<!-- Hero Section -->
+<!-- Hero -->
 ::: {style="text-align: center; padding: 3rem 0 2rem 0;"}
-# ![](images/rtide.png){width=100px} Welcome to R-Tide
+# ![](images/rtide.png){width=100px} R-Tide
 
-**R-Tide** is a community-driven movement where **R** users learn together, share discoveries, and ride the wave of the R ecosystem together.
+**A community where R users learn together, share discoveries, and grow alongside the R ecosystem.**
 
-We believe that the best way to stay current isn't to passively consume, but to actively learn alongside others. Whether you're wrangling data with the tidyverse, building interactive dashboards with Shiny, or publishing beautiful reports with Quarto, R-Tide is here so we can all grow together.
-
+Whether you're new to R or a seasoned developer — you belong here.
 :::
 
 ---
 
-<!-- The Problem / Why R-Tide -->
+<!-- Why -->
 ::: {style="background-color: #f8f9fa; padding: 2.5rem; border-radius: 12px; margin: 2rem 0;"}
-The R ecosystem moves quickly. New packages are released every day. Shiny continues to evolve. Quarto keeps introducing powerful publishing features. Staying current is exciting, but it can also feel overwhelming.
+The R ecosystem moves fast. New packages, evolving tools, endless possibilities.
 
-**R-Tide exists to make that journey collaborative.**
+**Keeping up alone is exhausting. Keeping up together is exciting.**
 
-Rather than trying to keep up alone, we learn from each other's discoveries, questions, experiments, and experiences. Every edition reflects what the community is exploring, because when one of us learns something new, we all move forward together.
+R-Tide exists so that when one of us learns something new, we all move forward.
 :::
 
 ---
 
 ## Mission & Vision
 
-<!-- Two-column layout for Mission & Vision -->
 ::: {.grid}
-
 ::: {.g-col-6}
 ::: {.callout-tip collapse="false" appearance="simple"}
 ## Mission
-To build a welcoming community where R users of every experience level learn together, share knowledge, and support one another while exploring the ever-growing R ecosystem.
+Build a space where R users of every level learn together, share openly, and support one another.
 :::
 :::
 
 ::: {.g-col-6}
 ::: {.callout-note collapse="false" appearance="simple" icon="false"}
 ## Vision
-A world where every R user—from first-time learner to seasoned expert—feels connected, supported, and excited to keep learning alongside their community.
+Every R user — beginner or expert — feels connected, supported, and excited to keep learning.
 :::
-:::
-
-:::
-
-### What We Believe
-
-::: {style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;"}
-::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
- **Learning is collaborative.**  
-Questions are encouraged, discoveries are celebrated, and every insight becomes an opportunity to help someone else.
-:::
-
-::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
-🤝 **Everyone contributes.**  
-Students, researchers, educators, developers, analysts, and hobbyists all have valuable perspectives to share.
-:::
-
-::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
-📈 **We rise together.**  
-No one gets left behind. When the tide comes in, it lifts every boat.
-:::
-
-::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
-🌍 **R remains accessible.**  
-As the ecosystem grows, we help one another understand not only what's new, but why it matters.
 :::
 :::
 
 ---
 
-## Our Values
+## What We Believe
 
-| Value | What It Means |
-|:---|:---|
-| 🌱 Curiosity | Every question is welcome. We're lifelong learners. |
-| 🤝 Collaboration | Sharing knowledge benefits everyone. |
-|  Community | Learning is stronger together than alone. |
-| 💙 Inclusivity | Every experience level and background belongs here. |
-| 📅 Consistency | We show up regularly with valuable content and conversations. |
+::: {style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;"}
+::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
+**Learning is collaborative.**
+Questions are welcome. Discoveries are shared.
+:::
+
+::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
+**Everyone contributes.**
+Students, analysts, developers, educators — all have something to offer.
+:::
+
+::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
+**We rise together.**
+When the tide comes in, it lifts every boat.
+:::
+
+::: {style="background: #e8f4f8; padding: 1.5rem; border-radius: 10px; text-align: center;"}
+**R stays accessible.**
+As the ecosystem grows, we help each other understand what's new and why it matters.
+:::
+:::
 
 ---
 
 ## Who Is R-Tide For?
 
-R-Tide welcomes anyone interested in R, including:
-
-::: {style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;"}
+::: {style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;"}
 ::: {style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #2A9D8F;"}
-📊 **Data Analysts & Scientists**  
-Discover new packages and best practices alongside peers.
+**Data Analysts & Scientists**
+New packages and best practices, together.
 :::
 
 ::: {style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #1A3A5C;"}
-📱 **Shiny Developers**  
-Explore new features, deployment tips, and inspiring apps—together.
+**Shiny Developers**
+Features, deployment tips, and app inspiration.
 :::
 
 ::: {style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #00B4D8;"}
-📄 **Quarto Users**  
-Learn about new formats, publishing workflows, and design possibilities as a community.
+**Quarto Users**
+Publishing workflows, formats, and design ideas.
 :::
 
 ::: {style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #E76F51;"}
-🎓 **Educators & Researchers**  
-Share tools and resources with fellow teachers and researchers.
+**Educators & Researchers**
+Tools and resources shared across disciplines.
 :::
 
 ::: {style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #6C5B7B;"}
-🧑‍🎓 **Students**  
-Find your footing in the R world with a supportive community by your side.
+**Students**
+A supportive community to find your footing in R.
 :::
 
 ::: {style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #F4A261;"}
-🌐 **Community Leaders**  
-Connect with user groups and organizers who are strengthening the R ecosystem around the world.
+**Community Leaders**
+Connect with groups strengthening R worldwide.
 :::
 :::
 
@@ -126,44 +110,33 @@ Connect with user groups and organizers who are strengthening the R ecosystem ar
 
 ::: {style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;"}
 ::: {style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%); border-radius: 12px;"}
-###  Regular Rhythm
-We publish on a consistent schedule (weekly, biweekly, or monthly—we'll grow with you).
+### Continuous Learning
+Regular content covering R for analysis, Shiny for dashboards, and Quarto for publishing.
 :::
 
 ::: {style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%); border-radius: 12px;"}
-### 📊 Three Pillars
-**R for Analysis** · **R Shiny** · **Quarto**  
-Every issue covers the latest in each area.
-:::
-
-::: {style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%); border-radius: 12px;"}
-### 🤝 Community-Powered
-**Guest curators** · **Tide Watchers** · **Discussions**  
+### Community-Powered
+**Guest curators · Tide Watchers · Open discussions.**
 Everyone can participate and contribute.
 :::
 :::
 
 ---
 
-## The Story Behind R-Tide
+## Get in Touch
 
-R-Tide started with a simple observation: keeping up with R is hard to do alone.
+::: {style="text-align: center; padding: 2rem; background-color: #f8f9fa; border-radius: 12px; margin: 2rem 0;"}
+Have a question, want to contribute, or just want to say hello?
 
-Not because the community isn't sharing—it's sharing *constantly*. Blogs, tweets, LinkedIn posts, conference talks, package releases, YouTube tutorials. It's a firehose of amazing content.
+**We'd love to hear from you.**
 
-The problem isn't a lack of information. It's that **information isn't the same as learning**.
-
-Learning happens through conversation, experimentation, and shared experience. It happens when someone explains a concept differently, demonstrates a workflow, or asks a question that sparks a new way of thinking.
-
-R-Tide was created to be that space. A place where we don't simply collect links, but build understanding together.
-
-> The tide is predictable, powerful, gains strength through momentum, and lifts everything in its path. That's exactly what we want R-Tide to be for the R community—a rising wave that carries all of us forward, together.
+📧 [rtidecommunity@gmail.com](mailto:rtidecommunity@gmail.com)
+:::
 
 ---
 
 ::: {style="text-align: center; padding: 2rem 0 1.5rem 0; color: #6c757d;"}
- **Stay curious. Stay connected. Ride the tide together.**
+**Stay curious. Stay connected. Ride the tide together.**
 
-*— The R-Tide Community*  
-*(Starting with one person—you—and growing with every new member who joins the tide)*
+*— The R-Tide Community*
 :::

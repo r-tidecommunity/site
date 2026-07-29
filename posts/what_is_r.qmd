@@ -7,7 +7,7 @@ categories: [R, beginner, introduction]
 
 Welcome to R-Tide! If you're new to R, or just curious about what makes it so special, this post is for you. We'll explore what R is, where it came from, how it evolved, and where you can start your learning journey.
 
----
+------------------------------------------------------------------------
 
 ## A Beginner's Introduction
 
@@ -25,7 +25,7 @@ One of R's greatest strengths is its **extensibility**. Users can add new functi
 
 R is also **free and open-source**. It's a GNU project, available under the GNU General Public License, which means anyone can download, use, and modify it without cost (GNU Project, 2026).
 
----
+------------------------------------------------------------------------
 
 ## A Brief History of R
 
@@ -39,18 +39,18 @@ While R's syntax resembles S, its underlying implementation is actually derived 
 
 Key milestones in R's development include:
 
-| Year | Milestone |
-|------|-----------|
-| **1993** | R is first created by Ihaka and Gentleman |
-| **1995** | Initial version released |
-| **1997** | R becomes an official GNU Project; CRAN launched |
+| Year     | Milestone                                             |
+|----------|-------------------------------------------------------|
+| **1993** | R is first created by Ihaka and Gentleman             |
+| **1995** | Initial version released                              |
+| **1997** | R becomes an official GNU Project; CRAN launched      |
 | **2000** | Version 1.0 released—considered stable for production |
-| **2004** | Version 2.0 introduced lazy loading |
-| **2013** | Version 3.0 released |
+| **2004** | Version 2.0 introduced lazy loading                   |
+| **2013** | Version 3.0 released                                  |
 
 Today, R is developed by the R Development Core Team and supported by the R Foundation for Statistical Computing.
 
----
+------------------------------------------------------------------------
 
 ## From RStudio to Posit
 
@@ -64,37 +64,37 @@ In July 2022, the company announced a **name change to Posit PBC**. This wasn't 
 
 Today, Posit continues to lead contributions to over 250 open-source projects, with the RStudio IDE remaining the premier environment for R development.
 
----
+------------------------------------------------------------------------
 
 ## What is R Used For?
 
 R is incredibly versatile. Here are some of its most common use cases:
 
-**Data Science & Machine Learning** 
+**Data Science & Machine Learning**
 
 R is a go-to language for predictive modeling, clustering, classification, and AI applications. Libraries like `caret`, `randomForest`, and `xgboost` make it easy to develop machine learning models.
 
-**Statistical Analysis & Research** 
+**Statistical Analysis & Research**
 
 R is extensively used in academia, scientific research, and economics for hypothesis testing, regression analysis, and survey data interpretation.
 
-**Data Visualization** 
+**Data Visualization**
 
 Organizations use R to generate interactive dashboards, charts, and reports with packages like `ggplot2`, `shiny`, and `plotly`.
 
-**Healthcare & Bioinformatics** 
+**Healthcare & Bioinformatics**
 
 R plays a crucial role in genomics, drug discovery, and epidemiology through the `Bioconductor` package.
 
-**Finance & Quantitative Trading** 
+**Finance & Quantitative Trading**
 
 R is used in financial modeling, risk analysis, and algorithmic trading with packages like `quantmod` and `TTR`.
 
-**Government & Policy Analysis** 
+**Government & Policy Analysis**
 
 Government agencies use R for census data analysis, public health research, and social science modeling.
 
----
+------------------------------------------------------------------------
 
 ## Resources for Beginners
 
@@ -117,9 +117,9 @@ Starting with R can feel daunting, but there are many excellent (and free!) reso
 
 ### 🛠️ Getting Started
 
-1. **Download R** from [cran.r-project.org](https://cran.r-project.org)
-2. **Download RStudio** (now Posit) from [posit.co](https://posit.co)
-3. **Follow a beginner tutorial** from the resources above
+1.  **Download R** from [cran.r-project.org](https://cran.r-project.org)
+2.  **Download RStudio** (now Posit) from [posit.co](https://posit.co)
+3.  **Follow a beginner tutorial** from the resources above
 
 ## References
 
@@ -143,7 +143,7 @@ Software Carpentry. (2026). *R for Reproducible Scientific Analysis*. https://sw
 
 Swirl. (2026). *Swirl: Learn R, in R*. https://swirlstats.com/
 
-Wickham, H. (2022, July 27). *RStudio is Becoming Posit*. [Blog post]. https://posit.co/blog/rstudio-is-becoming-posit/
+Wickham, H. (2022, July 27). *RStudio is Becoming Posit*. \[Blog post\]. https://posit.co/blog/rstudio-is-becoming-posit/
 
 Wickham, H., & Grolemund, G. (2023). *R for Data Science* (2nd ed.). O'Reilly. https://r4ds.hadley.nz/
 
@@ -154,9 +154,7 @@ R is a powerful, open, and welcoming language—and its community is one of the 
 That's what R-Tide is all about. We learn together, share discoveries, and ride the wave of the R ecosystem together.
 
 ::: {style="text-align: center; margin: 2rem 0;"}
-![](../images/rtide-logo.png){width=100px}
+![](../images/rtide-logo.png){width="100px"}
 
-*Stay curious. Stay connected. Ride the tide together.*
-*— The R-Tide Community*
+*Stay curious. Stay connected. Ride the tide together.* *— The R-Tide Community*
 :::
-
